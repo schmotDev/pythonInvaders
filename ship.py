@@ -4,6 +4,7 @@ class Ship:
 
     def __init__(self, ai_game):
         self.screen = ai_game.screen
+        self.config = ai_game.config
         self.screen_rect = ai_game.screen.get_rect()
 
         self.image = pygame.image.load('images/ship.bmp')
@@ -16,11 +17,11 @@ class Ship:
         self.moving_up = False
         self.moving_down = False
 
-        self.speed = 1.5
+        self.speed = self.config.ship_speed
         self.x = float(self.rect.x)
         self.y = float(self.rect.y)
 
-        self.bullet_limit = 8
+        self.bullet_limit = self.config.bullet_limit
 
 
     def update(self):
@@ -37,6 +38,12 @@ class Ship:
         self.rect.y = self.y
 
 
+    def center_ship(self):
+        self.rect.midbottom = self.screen_rect.midbottom
+        self.x = float(self.rect.x)
+
+        
+    
     def blitme(self):
         self.screen.blit(self.image, self.rect)
 
