@@ -13,5 +13,26 @@ class Config:
         self.ship_limit = 3
         self.bullet_limit = 8
 
+        self.bullet_speed = 1.0
+        self.bullet_width = 3
+        self.bullet_height = 15
+        self.bullet_color = (60, 60, 60)
+
+        self.fleet_drop_speed = 10
+        self.speedup_scale = 1.1
+
+        self.init_dynamic_settings()
+    
+
+
+    def init_dynamic_settings(self):
+        self.alien_speed = 1.0
+        self.fleet_direction = 1
+
+
+    def increase_speed(self):
+        self.alien_speed *= self.speedup_scale
+
+
 
 

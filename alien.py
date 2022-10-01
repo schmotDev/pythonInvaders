@@ -7,6 +7,7 @@ class Alien(Sprite):
 
         super().__init__()
         self.screen = ai_game.screen
+        self.config = ai_game.config
 
         self.image = pygame.image.load('images/alien.bmp')
         self.rect = self.image.get_rect()
@@ -16,9 +17,9 @@ class Alien(Sprite):
 
         self.x = float(self.rect.x)
 
-        self.speed = 1.0
-        self.drop_speed = 10
-        self.fleet_direction = 1
+        self.speed = self.config.alien_speed
+        self.drop_speed = self.config.fleet_drop_speed
+        self.fleet_direction = self.config.fleet_direction
 
     
     def update(self):
