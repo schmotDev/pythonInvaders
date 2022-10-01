@@ -114,6 +114,8 @@ class AlienInvasion:
             self._create_fleet()
             self.ship.center_ship()
 
+            pygame.mouse.set_visible(False)
+
 
 
     def _fire_bullet(self):
@@ -206,6 +208,7 @@ class AlienInvasion:
             sleep(0.5)
         else:
             self.stats.game_active = False
+            pygame.mouse.set_visible(True)
 
 
 
