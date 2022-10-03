@@ -1,3 +1,5 @@
+import json
+
 class GameStats:
 
     def __init__(self, ai_game):
@@ -7,6 +9,15 @@ class GameStats:
         self.game_active = False
 
         self.high_score = 0
+        
+        try:
+            with open('save.json') as f:
+                saved_data = json.load(f)
+            hs = saved_data['highscore']['high']
+        except:
+            print("pas de fichier de sauvegarde")
+        else:
+            self.high_score = hs
         
 
 # rien ici

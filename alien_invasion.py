@@ -2,6 +2,7 @@ from lib2to3.pygram import python_grammar_no_print_statement
 import sys
 import pygame
 from time import sleep
+import json
 
 from config import Config
 from gameStats import GameStats
@@ -55,7 +56,8 @@ class AlienInvasion:
         
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
-                sys.exit()
+                #sys.exit()
+                self._end_game()
             elif event.type == pygame.KEYDOWN:
                 self._check_keydown_events(event)
             elif event.type == pygame.KEYUP:
@@ -76,7 +78,8 @@ class AlienInvasion:
         elif event.key == pygame.K_DOWN:
             self.ship.moving_down = True
         elif event.key == pygame.K_ESCAPE:
-            sys.exit()
+            #sys.exit()
+            self._end_game()
         elif event.key == pygame.K_TAB:
             self._change_screen()
         elif event.key == pygame.K_SPACE:
@@ -229,6 +232,18 @@ class AlienInvasion:
 
 
 
+    def _end_game(self):
+        data_save = {'highscore': {
+            'name': 'toto',
+            'high': self.stats.high_score,
+            },
+        }
+        
+        save_file = 'save.json'
+        with open(save_file, 'w') as f:
+            json.dump(data_save, f, indent=4)
+        
+        sys.exit()
 
 
     def _update_screen(self):
